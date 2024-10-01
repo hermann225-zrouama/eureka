@@ -99,8 +99,7 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
       - name: Cd to spark directory
         run: |
-          cd spark
-
+           ls -la 
       # Modify the image in appname-manifest.yml
       - name: Modify the image in appname-manifest.yml
         run: |
