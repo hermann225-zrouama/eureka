@@ -62,7 +62,8 @@ jobs:
       - name: Copy manifest file
         run: |
           # Copy and rename the manifest.yml to appname-manifest.yml
-          cp manifest.yml ${{ env.app }}-manifest.yml
+          cp manifest.yml spark/${{ env.app }}-manifest.yml
+          ls -la
 
       # Commit and push the manifest changes to the manifests/spark repository
       - name: Commit and push manifest changes
