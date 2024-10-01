@@ -56,7 +56,6 @@ jobs:
         with:
           repository: 'hermann225-zrouama/manifests'
           token: ${{ secrets.PAT_TOKEN }}
-          path: spark
 
       # Copy the deployment.yaml file to the manifests repository with the appname-manifest.yml nomenclature
       - name: Copy manifest file
