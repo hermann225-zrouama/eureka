@@ -56,13 +56,14 @@ jobs:
         with:
           repository: 'hermann225-zrouama/manifests'
           token: ${{ secrets.PAT_TOKEN }}
+          path: manifests-repo
 
       # Copy the deployment.yaml file to the manifests repository with the appname-manifest.yml nomenclature
       - name: Copy manifest file
         run: |
           # Copy and rename the manifest.yml to appname-manifest.yml in the spark directory
           ls -la
-          cp ./manifest.yml spark/${{ env.app }}-manifest.yml
+          cp manifest.yml manifests-repo/spark/${{ env.app }}-manifest.yml
           ls -la spark  # List files in the spark directory to verify the copy
 
       # Commit and push the manifest changes to the manifests/spark repository
