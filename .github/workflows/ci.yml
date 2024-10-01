@@ -64,12 +64,11 @@ jobs:
           # Copy and rename the manifest.yml to appname-manifest.yml in the spark directory
           ls -la
           cp manifest.yml manifests-repo/spark/${{ env.app }}-manifest.yml
-          ls -la spark  # List files in the spark directory to verify the copy
 
       # Commit and push the manifest changes to the manifests/spark repository
       - name: Commit and push manifest changes
         run: |
-          cd spark
+          cd manifests-repo/spark
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add ${{ env.app }}-manifest.yml
