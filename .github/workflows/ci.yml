@@ -61,9 +61,9 @@ jobs:
       # Copy the deployment.yaml file to the manifests repository with the appname-manifest.yml nomenclature
       - name: Copy manifest file
         run: |
-          # Copy and rename the manifest.yml to appname-manifest.yml
+          # Copy and rename the manifest.yml to appname-manifest.yml in the spark directory
           cp manifest.yml spark/${{ env.app }}-manifest.yml
-          ls -la
+          ls -la spark  # List files in the spark directory to verify the copy
 
       # Commit and push the manifest changes to the manifests/spark repository
       - name: Commit and push manifest changes
@@ -79,9 +79,6 @@ jobs:
           else
             echo "No changes to commit."
           fi
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
   modifygit:
     needs: copymanifest
@@ -97,9 +94,13 @@ jobs:
         with:
           repository: 'hermann225-zrouama/manifests'
           token: ${{ secrets.PAT_TOKEN }}
+          
+      # Change directory to spark
       - name: Cd to spark directory
         run: |
-           ls -la 
+          cd spark
+          ls -la  # List files in the spark directory
+
       # Modify the image in appname-manifest.yml
       - name: Modify the image in appname-manifest.yml
         run: |
@@ -108,10 +109,10 @@ jobs:
           git config user.name "github-actions[bot]"
 
           # Update the image reference in appname-manifest.yml with the app variable
-          sed -i "s+image: .*$+image: ${{ secrets.DOCKER_USERNAME }}/${{ env.app }}:dev-${{ github.sha }}+g" ${{ env.app }}-manifest.yml
+          sed -i "s+image: .*$+image: ${{ secrets.DOCKER_USERNAME }}/${{ env.app }}:dev-${{ github.sha }}+g" spark/${{ env.app }}-manifest.yml
 
           # Stage and commit changes
-          git add ${{ env.app }}-manifest.yml
+          git add spark/${{ env.app }}-manifest.yml
           git commit -m 'Updated image to ${{ secrets.DOCKER_USERNAME }}/${{ env.app }}:dev-${{ github.sha }} by GitHub Actions'
 
           git push origin main
