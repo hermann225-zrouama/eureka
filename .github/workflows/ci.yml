@@ -67,7 +67,7 @@ jobs:
       # Commit and push the manifest changes to the manifests/spark repository
       - name: Commit and push manifest changes
         run: |
-          cd manifests-repo
+          cd spark
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add ${{ env.app }}-manifest.yml
