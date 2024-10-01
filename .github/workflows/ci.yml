@@ -87,8 +87,9 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          repository: 'hermann225-zrouama/manifests/spark'
+          repository: 'hermann225-zrouama/manifests'
           token: ${{ secrets.PAT_TOKEN }}
+          path: spark
 
       # Modify the image in appname-manifest.yml
       - name: Modify the image in appname-manifest.yml
