@@ -54,8 +54,9 @@ jobs:
       - name: Checkout the manifests repository
         uses: actions/checkout@v4
         with:
-          repository: 'hermann225-zrouama/manifests/spark'
+          repository: 'hermann225-zrouama/manifests'
           token: ${{ secrets.PAT_TOKEN }}
+          path: spark
 
       # Copy the deployment.yaml file to the manifests repository with the appname-manifest.yml nomenclature
       - name: Copy manifest file
