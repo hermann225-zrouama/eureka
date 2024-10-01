@@ -91,7 +91,9 @@ jobs:
         with:
           repository: 'hermann225-zrouama/manifests'
           token: ${{ secrets.PAT_TOKEN }}
-          path: spark
+      - name: Cd to spark directory
+        run: |
+          cd spark
 
       # Modify the image in appname-manifest.yml
       - name: Modify the image in appname-manifest.yml
