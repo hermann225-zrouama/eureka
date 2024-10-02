@@ -6,7 +6,6 @@ from pyspark.sql.functions import split, col
 if __name__ == "__main__":
     # Création de la configuration Spark
     conf = SparkConf() \
-        .set("spark.jars.packages", "org.apache.iceberg:iceberg-spark-runtime-3.3_2.12:1.6.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.3_2.12:0.79.0,org.apache.hadoop:hadoop-aws:3.3.2,com.amazonaws:aws-java-sdk-bundle:1.11.1026") \
         .set("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions") \
         .set("spark.sql.catalog.standardized.io-impl", "org.apache.iceberg.aws.s3.S3FileIO") \
         .set("spark.sql.catalog.standardized.warehouse", "s3a://standardized/") \

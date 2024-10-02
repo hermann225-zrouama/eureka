@@ -13,6 +13,17 @@ spec:
   sparkVersion: "3.3.1"
   restartPolicy:
     type: Never
+  deps:
+    repositories:
+      - https://repository.apache.org/releases
+      - https://repository.example.com/prod
+    packages:
+      - org.apache.iceberg:iceberg-spark-runtime-3.3_2.12:1.6.0
+      - org.projectnessie.nessie-integrations:nessie-spark-extensions-3.3_2.12:0.79.0
+      - org.apache.hadoop:hadoop-aws:3.3.2
+      - com.amazonaws:aws-java-sdk-bundle:1.11.1026
+    excludePackages:
+      - org.apache.iceberg:iceberg-spark-runtime-3.3_2.12:1.5.0
   driver:
     cores: 1
     memory: "512m"
@@ -20,12 +31,10 @@ spec:
       version: 3.3.2
     serviceAccount: spark
     env:
-        # -   name: AWS_REGION
-        #     value: us-east-1
-        -   name: AWS_ACCESS_KEY_ID
-            value: minioadmin
-        -   name: AWS_SECRET_ACCESS_KEY
-            value: minio@demo!
+      - name: AWS_ACCESS_KEY_ID
+        value: minioadmin
+      - name: AWS_SECRET_ACCESS_KEY
+        value: minio@demo!
   executor:
     cores: 1
     instances: 1
@@ -33,9 +42,7 @@ spec:
     labels:
       version: 3.3.2
     env:
-        # -   name: AWS_REGION
-        #     value: us-east-1
-        -   name: AWS_ACCESS_KEY_ID
-            value: minioadmin
-        -   name: AWS_SECRET_ACCESS_KEY
-            value: minio@demo!
+      - name: AWS_ACCESS_KEY_ID
+        value: minioadmin
+      - name: AWS_SECRET_ACCESS_KEY
+        value: minio@demo!
