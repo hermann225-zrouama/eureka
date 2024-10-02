@@ -29,5 +29,5 @@ WORKDIR /opt/spark/work-dir
  
 # Copy necessary files 
 COPY ./main.py . 
-#COPY ./jars /opt/spark/jars 
+COPY ./jars /opt/spark/jars 
  

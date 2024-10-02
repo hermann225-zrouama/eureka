@@ -7,32 +7,12 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: zetsu225/eureka:dev-5bdc11d88758e73abd720c3dfdfa33227b0daf92
-  imagePullPolicy: IfNotPresent
-  mainApplicationFile: local:///app/main.py
+  image: zetsu225/eureka:dev-6b4562c4def668fd79809d1555b0eba4aef04f78
+  imagePullPolicy: 
+  mainApplicationFile: local:///opt/spark/work-dir/main.py
   sparkVersion: "3.3.1"
   restartPolicy:
     type: Never
-  sparkConf:
-    spark.jars.packages: "org.apache.iceberg:iceberg-spark-runtime-3.3_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.3_2.12:0.79.0"
-    spark.sql.extensions: "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions"
-    spark.sql.catalog.standardized.io-impl: "org.apache.iceberg.aws.s3.S3FileIO"
-    spark.sql.catalog.standardized.warehouse: "s3a://standardized/"
-    spark.sql.catalog.standardized.s3.endpoint: "http://minio.minio.svc.cluster.default:9000"
-    spark.sql.catalog.standardized.catalog-impl: "org.apache.iceberg.nessie.NessieCatalog"
-    spark.sql.catalog.standardized.uri: "http://nessie.default.svc.cluster.default:19120/api/v1/"
-    spark.sql.catalog.standardized.authentication.type: "NONE"
-    spark.sql.catalog.standardized.ref: "main"
-    spark.sql.catalog.standardized: "org.apache.iceberg.spark.SparkCatalog"
-  hadoopConf:
-    fs.s3a.access.key: "minioadmin"
-    fs.s3a.secret.key: "minio@demo!"
-    fs.s3a.endpoint: "http://minio.minio.svc.cluster.default:9000"
-    fs.s3a.connection.ssl.enabled: "false"
-    fs.s3a.path.style.access: "true"
-    fs.s3a.attempts.maximum: "1"
-    fs.s3a.connection.establish.timeout: "5000"
-    fs.s3a.connection.timeout: "10000"
   driver:
     cores: 1
     memory: "512m"
