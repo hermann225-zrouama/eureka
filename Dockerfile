@@ -10,7 +10,7 @@
 
 # ------------------------------------------
 # Base Image 
-FROM apache/spark-py:3.3.2 
+FROM apache/spark-py:3.3.1
  
 # Switch to root user temporarily to create the spark user and group 
 USER root 
