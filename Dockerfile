@@ -7,9 +7,8 @@ RUN groupadd -r spark && \
     useradd -r -g spark spark && \ 
     # Assurez-vous que les répertoires Spark appartiennent à l'utilisateur spark 
     chown -R spark:spark /opt/spark
-
-# Crée le répertoire pour les JAR
-RUN mkdir -p /opt/spark/jars
+    
+RUN apt-get update && apt-get install -y wget
 
 # Téléchargement des JAR dans le répertoire /opt/spark/jars
 RUN wget https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-spark-runtime-3.3_2.12/1.6.0/iceberg-spark-runtime-3.3_2.12-1.6.0.jar -P /opt/spark/jars && \
